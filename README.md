@@ -7,3 +7,9 @@ Bangkit Final Capstone Project
   <li><b>.tflite</b> format is trained ML model to deploy on android</li>
   <li><b>.h5</b> format is saved trained model</li>
 </ul>
+
+<b>Android</b>
+<ul>
+  <li><b>FireDetector</b> is subtitute tools for detect/recognition object</li>
+  <li><b>FireDetectionApp</b> is for user to get notify if FireDetector detect something</li>
+</ul>
