@@ -1,98 +1,63 @@
 package com.thor.firedetector
 
+import android.Manifest
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Rational
-import android.util.Size
-import android.widget.Toast
-import androidx.camera.core.CameraX
-import androidx.camera.core.Preview
-import androidx.camera.core.impl.ImageAnalysisConfig
-import androidx.camera.core.impl.PreviewConfig
-import androidx.core.content.ContextCompat
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private val REQUEST_CODE_PERMISSIONS = 101
-    private val REQUIRED_PERMISSIONS = arrayOf("android.permission.CAMERA")
-    private var lensFacing = CameraX.LensFacing.BACK
+
+    lateinit var customTextureView: CustomTextureView
+    lateinit var tvResult: TextView
+
+    lateinit var allLabels: ArrayList<String>
+    private var tfLiteClassificationUtil: TFLiteHandler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (!checkPermission()){
+            requestPermission()
+        }
+
+        setComponent()
+        allLabels = Utils().generateLabelsFile(assets, "labels.txt")!!
+        var modelPath = Utils().getFileFromAssets(this, "model_transfer.tflite").absolutePath
+        tfLiteClassificationUtil = TFLiteHandler().TFLiteHandler(modelPath)
+
+
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                startCamera()
-            } else {
-                Toast.makeText(this, "Permissions not granted by the user.", Toast.LENGTH_SHORT)
-                        .show()
-                finish()
-            }
+
+    private fun setComponent(){
+        customTextureView = findViewById(R.id.texture_view)
+        tvResult = findViewById(R.id.result_text)
+    }
+
+    private fun requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ), 1
+            )
         }
     }
 
-    private fun allPermissionsGranted(): Boolean {
+    private fun checkPermission(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                    checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
-        for (permission in REQUIRED_PERMISSIONS) {
-            if (ContextCompat.checkSelfPermission(
-                            this,
-                            permission
-                    ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return false
-            }
+        } else {
+            true
         }
-        return true
-    }
-
-    private fun startCamera() {
-        val metrics = DisplayMetrics().also { texture.display.getRealMetrics(it) }
-        val screenSize = Size(metrics.widthPixels, metrics.heightPixels)
-        val screenAspectRatio = Rational(1, 1)
-
-        val previewConfig = PreviewConfig.Builder().apply {
-            setLensFacing(lensFacing)
-            setTargetResolution(screenSize)
-            setTargetAspectRatio(screenAspectRatio)
-            setTargetRotation(windowManager.defaultDisplay.rotation)
-            setTargetRotation(textureView.display.rotation)
-        }.build()
-
-        val preview = Preview(previewConfig)
-        preview.setOnPreviewOutputUpdateListener {
-            textureView.surfaceTexture = it.surfaceTexture
-            updateTransform()
-        }
-
-
-        val analyzerConfig = ImageAnalysisConfig.Builder().apply {
-            // Use a worker thread for image analysis to prevent glitches
-            val analyzerThread = HandlerThread("AnalysisThread").apply {
-                start()
-            }
-            setCallbackHandler(Handler(analyzerThread.looper))
-            setImageReaderMode(ImageAnalysis.ImageReaderMode.ACQUIRE_LATEST_IMAGE)
-        }.build()
-
-
-        val analyzerUseCase = ImageAnalysis(analyzerConfig)
-        analyzerUseCase.analyzer =
-                ImageAnalysis.Analyzer { image: ImageProxy, rotationDegrees: Int ->
-
-                    val bitmap = image.toBitmap()
-
-                    tfLiteClassifier
-                            .classifyAsync(bitmap)
-                            .addOnSuccessListener { resultText -> predictedTextView?.text = resultText }
-                            .addOnFailureListener { error -> }
-
-                }
-        CameraX.bindToLifecycle(this, preview, analyzerUseCase)
     }
 
 }
