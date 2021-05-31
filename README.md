@@ -1,9 +1,9 @@
 # bangkit-capstone-ASAP
 Bangkit Final Capstone Project
-<b> Datasets Source </b>
-https://www.kaggle.com/jerrinbright/forest-fire
-https://www.kaggle.com/phylake1337/fire-dataset
-https://www.kaggle.com/kutaykutlu/forest-fire
+<br><<b> Datasets Source </b>
+<br>https://www.kaggle.com/jerrinbright/forest-fire
+<br>https://www.kaggle.com/phylake1337/fire-dataset
+<br>https://www.kaggle.com/kutaykutlu/forest-fire
 <b>Machine Learning</b>
 <ul>
   <li>to run file with extension <b>.ipynb</b>, please upload it on <a href="https://colab.research.google.com/">google colab</a> then run it</li>
