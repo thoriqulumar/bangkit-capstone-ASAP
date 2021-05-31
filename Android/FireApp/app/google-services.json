@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "470246766029",
+    "firebase_url": "https://bangkit-capstone-asap-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bangkit-capstone-asap",
+    "storage_bucket": "bangkit-capstone-asap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470246766029:android:1579a926e48d4559f9c084",
+        "android_client_info": {
+          "package_name": "com.thor.fireclassification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470246766029-ndf1fc2qqi262jrsj1hkqvouoo82oguq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4ZR8eVCDfh_8RBtk3c6NX8A2pB4bcqJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470246766029-ndf1fc2qqi262jrsj1hkqvouoo82oguq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470246766029:android:2c53d9ea32e4cdaaf9c084",
+        "android_client_info": {
+          "package_name": "com.thor.firedetectionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470246766029-ndf1fc2qqi262jrsj1hkqvouoo82oguq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4ZR8eVCDfh_8RBtk3c6NX8A2pB4bcqJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470246766029-ndf1fc2qqi262jrsj1hkqvouoo82oguq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
