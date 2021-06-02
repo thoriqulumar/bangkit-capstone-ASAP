@@ -9,27 +9,31 @@
 
     <com.thor.fireclassification.AutoFitTextureView
         android:layout_width="match_parent"
-        android:layout_height="650dp"
+        android:layout_height="6750dp"
         android:id="@+id/texture_view"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/result_text"
+        android:layout_marginStart="16dp"
         tools:text="Results"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="class"
+        android:layout_marginStart="16dp"
         android:id="@+id/class_name" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="probability"
+        android:layout_marginStart="16dp"
         android:id="@+id/prob" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Time"
+        android:layout_marginStart="16dp"
         android:id="@+id/timeText" />
 
 </LinearLayout>

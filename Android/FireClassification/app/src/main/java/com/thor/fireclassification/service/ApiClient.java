@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     public static Retrofit retrofit;
-    private static final String BASE_URL = "URL";
+    private static final String BASE_URL = "https://jovial-light-312714.et.r.appspot.com";
 
     public static Retrofit getRetrofitInstance(){
         if (retrofit == null){

@@ -44,7 +44,15 @@ public class Utils {
 
     public static String getCurrentDate(){
         Date date = Calendar.getInstance().getTime();
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd 'pukul' HH:mm:ss");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyy 'pukul' HH:mm:ss");
+        String currentDate = simpleDateFormat.format(date);
+
+        return  currentDate;
+    }
+
+    public static String generateCurrentDate(){
+        Date date = Calendar.getInstance().getTime();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(" YYYY-MM-DD");
         String currentDate = simpleDateFormat.format(date);
 
         return  currentDate;
@@ -84,13 +92,8 @@ public class Utils {
         }
 
         if (bigEnough.size() > 0) {
-            return Collections.min(bigEnough, new Comparator<Size>() {
-                @Override
-                public int compare(Size lhs, Size rhs) {
-                    return Long.signum(
-                            (long) lhs.getWidth() * lhs.getHeight() - (long) rhs.getWidth() * rhs.getHeight());
-                }
-            });
+            return Collections.min(bigEnough, (lhs, rhs) -> Long.signum(
+                    (long) lhs.getWidth() * lhs.getHeight() - (long) rhs.getWidth() * rhs.getHeight()));
         } else {
             return choices[0];
         }
