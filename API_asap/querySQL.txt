@@ -1,0 +1,31 @@
+Cloud SQL-> Create instane(Mysql) name = predict -> Create Database name = predict -> Create User = predict password =******
+
+Variable yg diupload :
+-class_name(string)
+-date (string)
+-imgUrl(string)
+-latitude(string)
+-longitude(string)
+-probability(float)
+----
+login in cloud shell
+gcloud sql connect predict --user=predict
+password = ****** 
+----
+create table predict(
+class_name VARCHAR(255),
+date VARCHAR(255),
+imgUrl VARCHAR(255),
+latitude VARCHAR(255),
+longtitude VARCHAR(255),
+probability FLOAT
+);
+--------
+insert into predict (class_name, date, imgUrl, latitude, longtitude, probability) values ("fire","2021-05-11" ,"http//:123","1","1",1);
+insert into predict (class_name, date, imgUrl, latitude, longtitude, probability) values ("none","2021-04-12" ,"http//:456","2","2",2);
+---
+select * from predict;
+--
+Cretae requrement.txt
+pip freeze | grep "Flask\|PyMySQL" > requirements.txt
+-----
