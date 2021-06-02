@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">FireDetectionApp</string>
+    <string name="app_name">Fire Department</string>
+    <string name="owner">By <br/> Bangkit: ASAP Team</string>
 </resources>

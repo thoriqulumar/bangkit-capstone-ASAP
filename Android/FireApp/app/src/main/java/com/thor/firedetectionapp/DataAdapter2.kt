@@ -13,8 +13,8 @@ import com.thor.firedetectionapp.model.DataItem
 import com.thor.firedetectionapp.model.DataResult
 
 @Suppress("UNREACHABLE_CODE")
-class DataAdapter(private var dataList: ArrayList<DataItem>,
-                  private var context: Context) : RecyclerView.Adapter<DataAdapter.ViewHolder>() {
+class DataAdapter2(private var dataList: ArrayList<DataResult>,
+                   private var context: Context) : RecyclerView.Adapter<DataAdapter2.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,7 +23,7 @@ class DataAdapter(private var dataList: ArrayList<DataItem>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val latitude = dataList[position].latitude
-        val longitude = dataList[position].longtitude
+            val longitude = dataList[position].longtitude
         Log.d("Adapter", "latitude: " + latitude)
         Log.d("Adapter", "longitude: " + longitude)
 
@@ -35,7 +35,7 @@ class DataAdapter(private var dataList: ArrayList<DataItem>,
 
             holder.parent.setOnClickListener {
                 val intent = Intent(context, DetailDataActivity::class.java)
-                intent.putExtra("class_name", dataList[position].className)
+                intent.putExtra("class_name", dataList[position].class_name)
                 intent.putExtra("location", location)
                 intent.putExtra("date", dataList[position].date)
                 intent.putExtra("latitude", dataList[position].latitude)
