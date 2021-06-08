@@ -42,17 +42,4 @@ def add_predict(predict):
     conn.commit()
     conn.close()
     
-#haruse ono id ne 
-def delete_predict(id):
-    conn = open_connection()
-    with conn.cursor() as cursor:
-        cursor.execute('DELETE FROM predict WHERE id=%s;')
-    conn.commit()
-    conn.close()
 
-def edit_predict(id):
-    conn = open_connection()
-    with conn.cursor() as cursor:
-        cursor.execute('UPDATE predict SET id=%s WHERE id=%s')
-    conn.commit()
-    conn.close()
