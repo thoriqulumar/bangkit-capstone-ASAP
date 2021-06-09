@@ -17,3 +17,12 @@ Bangkit Final Capstone Project<br>
   <li><b>FireClassification</b> is subtitute tools for classification object</li>
   <li><b>FireApp</b> is for user to get data if FireClassification detect fire</li>
 </ul>
+
+<b>Cloud Computing</b>
+<ul>
+  <li><b>FireClassification</b>Create API using Flask framework</li>
+  <li><b>FireClassification</b>Deploy API on Google Cloud Platform</li>
+</ul>
+
+
+
