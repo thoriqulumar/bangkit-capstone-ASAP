@@ -20,8 +20,8 @@ Bangkit Final Capstone Project<br>
 
 <b>Cloud Computing</b>
 <ul>
-  <li><b>FireClassification</b>Create API using Flask framework</li>
-  <li><b>FireClassification</b>Deploy API on Google Cloud Platform</li>
+  <li>Create API using Flask framework</li>
+  <li>Deploy API on Google Cloud Platform</li>
 </ul>
 
 
